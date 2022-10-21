@@ -11,6 +11,9 @@
 # production
 /build
 
+# snyk vs-code-plugin generates this
+.dccache
+
 # misc
 .DS_Store
 .env.local
