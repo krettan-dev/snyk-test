@@ -1,0 +1,13 @@
+name: npm-test
+run-name: Runs the npm test command
+on: [push]
+jobs:
+  run-npm-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '19'
+      - run: npm install
+      - run: npm test
