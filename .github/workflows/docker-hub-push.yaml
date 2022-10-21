@@ -20,9 +20,24 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - 
+        name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: retzner/snyk-test
+          tags: |
+              type=ref,event=branch
+              type=sha
+              type=sha,prefix={{branch}}-
+              type=sha,format=long
+              type=sha,format=long,prefix={{branch}}-
+              type=raw,value=latest
       -
         name: Build and push
         uses: docker/build-push-action@v3
         with:
+          context: .
           push: true
-          tags: user/app:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
