@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.19.0
+version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-JS-BROWSERSLIST-1090194:
@@ -22,4 +22,9 @@ ignore:
     - react-scripts > workbox-webpack-plugin > workbox-build > lodash.template:
         reason: 'Ouch! A high vulnerability, no patch found...'
         expires: '2021-08-15T10:04:14.275Z'
+  SNYK-DEBIAN11-TIFF-3058787:
+    - '*':
+        reason: No fix available yet
+        expires: 2022-11-01T00:00:00.000Z
+        created: 2022-10-22T09:25:17.949Z
 patch: {}
