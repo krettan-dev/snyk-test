@@ -7,7 +7,7 @@ RUN npm install
 COPY ./ /app/
 RUN npm run build
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
-FROM nginx:1.23.2
+FROM nginx:1.23-alpine
 COPY --from=build-stage /app/build/ /usr/share/nginx/html
 # Copy the default nginx.conf provided by tiangolo/node-frontend
 COPY nginx-config/nginx.conf /etc/nginx/conf.d/default.conf
