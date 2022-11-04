@@ -68,7 +68,8 @@ jobs:
               "user": "${{ github.actor }}",
               "commit": "${{ github.sha }}",
               "action_name": "${{ github.workflow }}",
-              "job_link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+              "job_link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+              "image_link": "https://${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
