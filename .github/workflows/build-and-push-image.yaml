@@ -62,13 +62,13 @@ jobs:
           # This data can be any valid JSON from a previous step in the GitHub Action
           payload: |
             {
-              "repository": "${{ env.GITHUB_REPOSITORY }}",
-              "branch": "${{ env.GITHUB_REF_NAME }}",
+              "repository": "${{ github.repository }}",
+              "branch": "${{ github.ref_name }}",
               "status": "${{ job.status }}",
-              "user": "${{ env.GITHUB_ACTOR }}",
-              "commit": "${{ env.GITHUB_SHA }}",
-              "action_name": "${{ env.GITHUB_WORKFLOW }}",
-              "job_link": "${{ env.GITHUB_SERVER_URL }}/${{ env.GITHUB_REPOSITORY }}/actions/runs/${{ env.GITHUB_RUN_ID }}"
+              "user": "${{ github.actor }}",
+              "commit": "${{ github.sha }}",
+              "action_name": "${{ github.workflow }}",
+              "job_link": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
