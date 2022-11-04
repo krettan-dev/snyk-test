@@ -67,7 +67,7 @@ jobs:
               "status": "${{ github.action_status }}",
               "user": "${{ github.actor }}",
               "commit": "${{ github.sha }}",
-              "action_name": "${{ github.job }}",
+              "action_name": "${{ github.job }}"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
