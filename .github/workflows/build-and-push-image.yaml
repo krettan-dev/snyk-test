@@ -54,3 +54,20 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Send custom JSON data to Slack workflow
+        id: slack
+        if: always()
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          # This data can be any valid JSON from a previous step in the GitHub Action
+          payload: |
+            {
+              "repository": ${{ github.repository }},
+              "branch": ${{ github.ref_name }},
+              "status": ${{ github.action_status }},
+              "user": ${{ github.actor }},
+              "commit": ${{ github.sha }},
+              "action_name": ${{ github.job }},
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
