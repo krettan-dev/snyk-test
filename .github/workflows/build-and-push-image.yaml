@@ -54,6 +54,12 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Generate SBOM using Syft
+        uses: anchore/sbom-action@v0
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          dependency-snapshot: true
       - name: Send custom JSON data to Slack workflow
         id: slack
         if: always()
