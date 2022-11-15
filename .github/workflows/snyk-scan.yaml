@@ -24,6 +24,10 @@ name: Snyk Container & App
 
 on:
   workflow_call:
+    secrets:
+      SNYK_TOKEN:
+        description: 'In order to use the Snyk Action you will need to have a Snyk API token.'
+        required: true
   schedule:
     - cron: '0 12 * * *'
 
