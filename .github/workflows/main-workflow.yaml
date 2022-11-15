@@ -1,0 +1,29 @@
+name: Main branch push workflow
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  npm-test:
+    uses: ./.github/workflows/npm-test.yaml
+  build-and-push-image:
+    needs: npm-test
+    uses: ./.github/workflows/build-and-push-image.yaml
+  generate-sbom:
+    needs: build-and-push-image
+    uses: ./.github/workflows/syft-generate-sbom.yaml
+  snyk-scan:
+    needs: [npm-test, build-and-push-image]
+    uses: ./.github/workflows/snyk-scan.yaml
+    secrets:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  code-ql:
+    needs: [npm-test, build-and-push-image]
+    uses: ./.github/workflows/codeql.yml
+  notify-slack:
+    needs: [generate-sbom, code-ql, snyk-scan, npm-test, build-and-push-image]
+    uses: ./.github/workflows/slack-notification.yaml
+    secrets:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

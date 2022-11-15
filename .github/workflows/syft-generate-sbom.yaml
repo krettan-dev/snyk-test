@@ -1,0 +1,14 @@
+name: Generate SBOM using Syft
+
+on:
+  workflow_call:
+
+jobs:
+  generate-sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anchore/sbom-action@v0
+        with:
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          dependency-snapshot: true
+    

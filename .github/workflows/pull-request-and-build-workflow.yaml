@@ -1,0 +1,20 @@
+name: Pull request and build workflow
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  npm-test:
+    uses: ./.github/workflows/npm-test.yaml
+  build-and-push-image:
+    needs: npm-test
+    uses: ./.github/workflows/build-and-push-image.yaml
+  snyk-scan:
+    needs: [npm-test, build-and-push-image]
+    uses: ./.github/workflows/snyk-scan.yaml
+    secrets:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  code-ql:
+    needs: [npm-test, build-and-push-image]
+    uses: ./.github/workflows/codeql.yml

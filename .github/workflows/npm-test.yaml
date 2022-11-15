@@ -1,6 +1,8 @@
-name: npm-test
-run-name: Runs the npm test command
-on: [push]
+name: Runs the npm test command
+
+on:
+  workflow_call:
+
 jobs:
   run-npm-test:
     runs-on: ubuntu-latest

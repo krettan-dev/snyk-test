@@ -1,0 +1,10 @@
+name: Feature branch workflow
+
+on:
+  push:
+    branches:
+      - 'feature-*'
+
+jobs:
+  npm-test:
+    uses: ./.github/workflows/npm-test.yaml
