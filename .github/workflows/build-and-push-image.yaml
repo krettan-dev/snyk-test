@@ -1,13 +1,7 @@
-name: build-and-push-image
-run-name: Build and push Docker image
+name: Build and push Docker image
 
 on:
-  push:
-    branches:
-      - 'main'
-      - 'build-*'
-    tags:
-      - 'v*'
+  workflow_call:
 
 env:
   REGISTRY: ghcr.io

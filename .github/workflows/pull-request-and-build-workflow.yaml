@@ -1,0 +1,11 @@
+name: Pull request and build workflow
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  npm-test:
+    uses: ./.github/workflows/npm-test.yaml
+  build-and-push-docker-image:
+    uses: ./.github/workflows/build-and-push-image.yaml
