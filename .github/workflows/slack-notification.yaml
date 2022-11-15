@@ -2,6 +2,10 @@ name: Send custom JSON data to Slack workflow
 
 on:
   workflow_call:
+    secrets:
+      SLACK_WEBHOOK_URL:
+        description: 'A webhook URL for the specific Slack integration'
+        required: true
 
 jobs:
   generate-sbom:

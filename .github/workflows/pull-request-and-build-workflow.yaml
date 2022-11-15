@@ -15,3 +15,6 @@ jobs:
     uses: ./.github/workflows/snyk-scan.yaml
     secrets:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  code-ql:
+    needs: [npm-test, build-and-push-image]
+    uses: ./.github/workflows/codeql.yml
