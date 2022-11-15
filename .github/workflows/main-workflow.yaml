@@ -15,7 +15,6 @@ jobs:
     needs: build-and-push-image
     uses: ./.github/workflows/syft-generate-sbom.yaml
     with:
-      registry: ghcr.io
       image_name: ${{ github.repository }}
   snyk-scan:
     needs: [npm-test, build-and-push-image]

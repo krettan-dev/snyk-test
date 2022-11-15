@@ -4,10 +4,13 @@ on:
   workflow_call:
     inputs:
       registry:
-        required: true
+        required: false
+        type: string
+        default: 'ghcr.io'
         description: 'The registry where our image is located'
       image_name:
         required: true
+        type: string
         description: 'The image name we want to generate the SBOM for'
 
 jobs:
