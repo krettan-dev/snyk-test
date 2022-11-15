@@ -5,9 +5,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  pull-request:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/workflows/npm-test.yaml
-      - uses: ./.github/workflows/build-and-push-image.yaml
+  npm-test:
+    uses: ./.github/workflows/npm-test.yaml
+  build-and-push-docker-image:
+    needs: npm-test
+    uses: ./.github/workflows/build-and-push-image.yaml
