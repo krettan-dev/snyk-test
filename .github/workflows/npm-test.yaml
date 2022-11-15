@@ -1,5 +1,5 @@
-name: npm-test
-run-name: Runs the npm test command
+name: Runs the npm test command
+
 on: [push]
 jobs:
   run-npm-test:
