@@ -2,6 +2,13 @@ name: Generate SBOM using Syft
 
 on:
   workflow_call:
+    inputs:
+      registry:
+        required: true
+        description: 'The registry where our image is located'
+      image_name:
+        required: true
+        description: 'The image name we want to generate the SBOM for'
 
 jobs:
   generate-sbom:
@@ -9,6 +16,6 @@ jobs:
     steps:
       - uses: anchore/sbom-action@v0
         with:
-          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          image: ${{ inputs.registry }}/${{ inputs.image_name }}:latest
           dependency-snapshot: true
     
