@@ -1,11 +1,15 @@
-import logo from './logo.svg';
+import logo from './cshift-circle.svg';
+import cshiftC from './cshift-c.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <div>
+          <img src={cshiftC} className="App-logo-c" alt="c" />
+          <img src={logo} className="App-logo" alt="logo" />
+        </div>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>

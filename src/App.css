@@ -7,9 +7,16 @@
   pointer-events: none;
 }
 
+.App-logo-c {
+  height: 15vmin;
+  position: absolute;
+  padding-top: 12.5vmin;
+  padding-left: 12.5vmin;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 10s linear;
   }
 }
 
