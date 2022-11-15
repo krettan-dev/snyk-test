@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  npm-test:
-    uses: ./.github/workflows/npm-test.yaml
-  build-and-push-docker-image:
-    uses: ./.github/workflows/build-and-push-image.yaml
+  pull-request:
+    steps:
+      uses: ./.github/workflows/npm-test.yaml
+      uses: ./.github/workflows/build-and-push-image.yaml
