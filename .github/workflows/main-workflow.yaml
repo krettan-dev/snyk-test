@@ -1,0 +1,19 @@
+name: Main branch push workflow
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  npm-test:
+    uses: ./.github/workflows/npm-test.yaml
+  build-and-push-docker-image:
+    needs: npm-test
+    uses: ./.github/workflows/build-and-push-image.yaml
+  generate-sbom:
+    needs: build-and-push-docker-image
+    uses: ./.github/workflows/syft-generate-sbom.yaml
+  notify-slack:
+    needs: generate-sbom
+    uses: ./.github/workflows/slack-notification.yaml

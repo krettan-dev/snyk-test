@@ -10,3 +10,6 @@ jobs:
   build-and-push-docker-image:
     needs: npm-test
     uses: ./.github/workflows/build-and-push-image.yaml
+  snyk-scan:
+    needs: npm-test
+    uses: ./.github/workflows/snyk-scan
