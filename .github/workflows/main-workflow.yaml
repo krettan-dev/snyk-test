@@ -24,6 +24,9 @@ jobs:
   code-ql:
     needs: [npm-test, build-and-push-image]
     uses: ./.github/workflows/codeql.yml
+  gh-pages-deploy:
+    needs: [npm-test, build-and-push-image, snyk-scan, code-ql]
+    uses: ./.github/workflows/publish-to-github-pages.yaml
   notify-slack:
     needs: [generate-sbom, code-ql, snyk-scan, npm-test, build-and-push-image]
     uses: ./.github/workflows/slack-notification.yaml
