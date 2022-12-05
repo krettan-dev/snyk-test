@@ -38,6 +38,6 @@
     ]
   },
   "devDependencies": {
-    "snyk": "^1.996.0"
+    "snyk": "^1.1067.0"
   }
 }
