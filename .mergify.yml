@@ -1,0 +1,21 @@
+pull_request_rules:
+  - name: Automatic merge on approval
+    conditions:
+      - "#approved-reviews-by>=1"
+    actions:
+      merge:
+        method: merge
+  - name: automatic merge for Dependabot pull requests
+    conditions:
+      - author=dependabot[bot]
+      # Replace with the name of your CI(s)
+      - check-success=npm-test / run-npm-test
+      - check-success=snyk-scan / snyk-app
+      - check-success=snyk-scan / snyk-container
+      - check-success=build-and-push-image / build-and-push-docker-image
+    actions:
+      review:
+        type: APPROVE
+        message: Automatically approving dependabot
+      merge:
+        method: merge
