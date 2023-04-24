@@ -1,5 +1,5 @@
 # Stage 0, "build-stage", based on Node.js, to build and compile the frontend
-FROM node:19-alpine as build-stage
+FROM node:20-alpine as build-stage
 RUN apk update
 RUN apk del curl
 WORKDIR /app
